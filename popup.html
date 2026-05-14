@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biletix Tracker Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <button class="end-day-btn" id="endDayBtn" title="Günü bitir ve tüm kayıtları sıfırla">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>Gün Bitir</span>
+        </button>
+
+        <img src="1200x630wa.jpg" alt="Biletix Logo" class="header-logo">
+        <div class="header-title">biletix</div>
+        <div class="header-subtitle">Tracker Pro</div>
+        <div class="header-stats">
+            <div class="stat-item">
+                <div class="stat-value" id="totalSales">0</div>
+                <div class="stat-label">Toplam İşlem</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="todaySales">0</div>
+                <div class="stat-label">Bugün</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="totalRevenue">₺0</div>
+                <div class="stat-label">Toplam</div>
+            </div>
+            <div class="stat-item stat-refund">
+                <div class="stat-value" id="totalRefunds">0</div>
+                <div class="stat-label">İade</div>
+            </div>
+            <div class="stat-item stat-cancel">
+                <div class="stat-value" id="totalCancels">0</div>
+                <div class="stat-label">İptal</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search + Filters + Reload -->
+    <div class="search-container">
+        <div class="search-row">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="text" class="search-input" id="searchInput" placeholder="Referans, isim, telefon veya fiyat ara...">
+            <button class="action-btn export-btn" id="exportBtn" title="CSV olarak dışa aktar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+            </button>
+            <button class="action-btn reload-btn" id="reloadBtn" title="Sayfadan tekrar çek">
+                <svg class="reload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path>
+                    <path d="M21 3v5h-5"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="filter-row">
+            <button class="filter-btn active" data-filter="all">Tümü</button>
+            <button class="filter-btn" data-filter="nakit">💵 Nakit</button>
+            <button class="filter-btn" data-filter="pos">💳 POS</button>
+            <button class="filter-btn" data-filter="iade">↩️ İade</button>
+            <button class="filter-btn" data-filter="iptal">❌ İptal</button>
+        </div>
+    </div>
+
+    <!-- Sales List -->
+    <div class="sales-list" id="salesList">
+        <!-- Empty state (shown when no sales) -->
+        <div class="empty-state" id="emptyState">
+            <div class="empty-state-icon">🎫</div>
+            <div class="empty-state-title">Henüz işlem yok</div>
+            <div class="empty-state-text">Biletix onay sayfasını ziyaret ettiğinizde işlemler otomatik olarak burada
+                görünecek.</div>
+        </div>
+    </div>
+
+    <!-- Status Change Modal -->
+    <div class="modal-overlay" id="statusModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">İşlem Durumunu Değiştir</span>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-ref" id="modalRef"></div>
+            <div class="modal-options">
+                <button class="status-option active-status" data-status="active">
+                    <span class="status-dot dot-active"></span>
+                    Aktif (Normal)
+                </button>
+                <button class="status-option refund-status" data-status="iade">
+                    <span class="status-dot dot-refund"></span>
+                    İade Edildi
+                </button>
+                <button class="status-option cancel-status" data-status="iptal">
+                    <span class="status-dot dot-cancel"></span>
+                    İptal Edildi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-content delete-modal-content">
+            <div class="delete-modal-icon">🗑️</div>
+            <div class="delete-modal-title">İşlemi Sil</div>
+            <div class="delete-modal-text">Bu işlemi kalıcı olarak silmek istediğinize emin misiniz?</div>
+            <div class="delete-modal-ref" id="deleteModalRef"></div>
+            <div class="delete-modal-actions">
+                <button class="delete-modal-cancel" id="deleteCancelBtn">Vazgeç</button>
+                <button class="delete-modal-confirm" id="deleteConfirmBtn">Sil</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reset All Confirmation Modal -->
+    <div class="modal-overlay" id="resetModal">
+        <div class="modal-content delete-modal-content">
+            <div class="delete-modal-icon">⚠️</div>
+            <div class="delete-modal-title">Günü Bitir</div>
+            <div class="delete-modal-text">Tüm kayıtlar kalıcı olarak silinecek.<br>Bu işlem geri alınamaz!</div>
+            <div class="reset-modal-count" id="resetModalCount"></div>
+            <div class="delete-modal-actions">
+                <button class="delete-modal-cancel" id="resetCancelBtn">Vazgeç</button>
+                <button class="delete-modal-confirm" id="resetConfirmBtn">Tümünü Sil</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✅</span>
+        <span id="toastText">Kopyalandı!</span>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-text">Biletix Tracker - Developed by <strong>Arda Geçimli</strong></div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

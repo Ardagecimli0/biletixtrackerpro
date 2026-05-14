@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "Biletix Tracker Pro",
+    "version": "1.0",
+    "description": "Biletix onay ekranındaki satışları otomatik kaydeder ve takip eder",
+    "icons": {
+        "128": "1200x630wa.jpg"
+    },
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting",
+        "tabs",
+        "webNavigation",
+        "alarms"
+    ],
+    "host_permissions": [
+        "*://*.biletix.com/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "1200x630wa.jpg"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.biletix.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ]
+}

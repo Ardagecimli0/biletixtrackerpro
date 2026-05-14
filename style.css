@@ -1,0 +1,944 @@
+/* ==========================================
+   Biletix Tracker Pro - Design System
+   ========================================== */
+
+/* CSS Variables */
+:root {
+    --biletix-blue: #0055FE;
+    --biletix-dark: #003FBF;
+    --white: #FFFFFF;
+    --bg-light: #F4F6FA;
+    --card-bg: #FFFFFF;
+    --text-primary: #1A1A2E;
+    --text-secondary: #6B7280;
+    --text-muted: #9CA3AF;
+    --green: #10B981;
+    --green-light: #D1FAE5;
+    --orange: #F59E0B;
+    --orange-light: #FEF3C7;
+    --red: #EF4444;
+    --red-light: #FEE2E2;
+    --border: #E5E7EB;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --transition: all 0.2s ease;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 380px;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg-light);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================
+   Header
+   ========================================== */
+.header {
+    background: linear-gradient(135deg, var(--biletix-blue) 0%, var(--biletix-dark) 100%);
+    padding: 16px 20px 14px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 50%;
+}
+
+.header-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    object-fit: cover;
+}
+
+.header-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.header-subtitle {
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 1px;
+}
+
+/* End Day Button */
+.end-day-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(239, 68, 68, 0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    color: #FCA5A5;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    z-index: 10;
+    transition: var(--transition);
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.end-day-btn svg {
+    width: 12px;
+    height: 12px;
+}
+
+.end-day-btn:hover {
+    background: rgba(239, 68, 68, 0.4);
+    color: var(--white);
+    border-color: rgba(239, 68, 68, 0.5);
+    transform: translateY(-1px);
+}
+
+.end-day-btn:active {
+    transform: scale(0.95);
+}
+
+/* Reset Modal Count */
+.reset-modal-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--orange);
+    background: var(--orange-light);
+    padding: 6px 14px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    display: inline-block;
+}
+
+
+.header-stats {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.stat-item {
+    text-align: center;
+    min-width: 48px;
+}
+
+.stat-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.stat-label {
+    font-size: 9px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* İade & İptal stat renkleri */
+.stat-refund .stat-value {
+    color: #FCD34D;
+}
+
+.stat-cancel .stat-value {
+    color: #FCA5A5;
+}
+
+/* ==========================================
+   Search Bar & Filters
+   ========================================== */
+.search-container {
+    padding: 10px 16px 8px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.search-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    flex: 1;
+    padding: 9px 14px 9px 36px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-family: inherit;
+    color: var(--text-primary);
+    background: var(--bg-light);
+    transition: var(--transition);
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: var(--biletix-blue);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(0, 85, 254, 0.1);
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+/* Filter Row */
+.filter-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.filter-row::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-btn {
+    flex-shrink: 0;
+    padding: 5px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    background: var(--white);
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.filter-btn:hover {
+    border-color: var(--biletix-blue);
+    color: var(--biletix-blue);
+}
+
+.filter-btn.active {
+    background: var(--biletix-blue);
+    border-color: var(--biletix-blue);
+    color: var(--white);
+}
+
+/* Action Buttons (Reload & Export) */
+.action-btn {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-light);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    outline: none;
+}
+
+.action-btn:hover {
+    border-color: var(--biletix-blue);
+    color: var(--biletix-blue);
+    background: rgba(0, 85, 254, 0.06);
+}
+
+.action-btn:active {
+    transform: scale(0.92);
+}
+
+.action-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.action-btn.spinning .reload-icon {
+    animation: spin 0.8s ease;
+}
+
+.action-btn.success {
+    border-color: var(--green);
+    color: var(--green);
+    background: var(--green-light);
+}
+
+.action-btn.error {
+    border-color: #EF4444;
+    color: #EF4444;
+    background: #FEE2E2;
+}
+
+.reload-icon {
+    width: 16px;
+    height: 16px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================
+   Sales List
+   ========================================== */
+.sales-list {
+    padding: 10px 16px;
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0;
+}
+
+/* Custom Scrollbar */
+.sales-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sales-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sales-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 85, 254, 0.2);
+    border-radius: 10px;
+}
+
+.sales-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 85, 254, 0.4);
+}
+
+/* ==========================================
+   Sale Card
+   ========================================== */
+.sale-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    border-left: 4px solid var(--biletix-blue);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    cursor: default;
+}
+
+.sale-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+}
+
+.sale-card:hover .sale-status-btn,
+.sale-card:hover .sale-delete-btn {
+    opacity: 1;
+}
+
+/* İade & İptal kartları */
+.sale-card-refund {
+    border-left-color: var(--orange);
+    background: linear-gradient(135deg, #FFFBEB 0%, var(--white) 100%);
+}
+
+.sale-card-cancel {
+    border-left-color: var(--red);
+    background: linear-gradient(135deg, #FEF2F2 0%, var(--white) 100%);
+}
+
+.sale-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.sale-card-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sale-ref {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--biletix-blue);
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 6px;
+    transition: var(--transition);
+    user-select: none;
+}
+
+.sale-ref:hover {
+    background: rgba(0, 85, 254, 0.08);
+}
+
+.sale-ref:active {
+    background: rgba(0, 85, 254, 0.15);
+    transform: scale(0.97);
+}
+
+.sale-ref-icon {
+    width: 13px;
+    height: 13px;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.sale-ref:hover .sale-ref-icon {
+    opacity: 1;
+}
+
+.sale-price {
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.sale-price.price-muted {
+    background: #F3F4F6;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+/* Status Badge */
+.sale-status-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.badge-refund {
+    background: var(--orange-light);
+    color: #D97706;
+}
+
+.badge-cancel {
+    background: var(--red-light);
+    color: var(--red);
+}
+
+/* Status Change Button */
+.sale-status-btn {
+    position: absolute;
+    top: 10px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.sale-status-btn:hover {
+    background: var(--bg-light);
+    color: var(--text-primary);
+}
+
+.sale-status-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Delete Button on Card */
+.sale-delete-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.sale-delete-btn:hover {
+    background: var(--red-light);
+    color: var(--red);
+}
+
+.sale-delete-btn svg {
+    width: 13px;
+    height: 13px;
+}
+
+.sale-event {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.sale-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sale-customer {
+    font-size: 11px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.sale-date {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.sale-info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 3px;
+    flex-wrap: wrap;
+}
+
+.sale-phone {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.sale-payment {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+/* ==========================================
+   Status Modal
+   ========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(4px);
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.25s ease;
+}
+
+.modal-overlay.show .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.modal-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.modal-close {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: var(--bg-light);
+    border-radius: 50%;
+    font-size: 18px;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    background: var(--border);
+    color: var(--text-primary);
+}
+
+.modal-ref {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--biletix-blue);
+    margin-bottom: 16px;
+    padding: 8px 12px;
+    background: rgba(0, 85, 254, 0.06);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.modal-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.status-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: var(--white);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.status-option:hover {
+    border-color: var(--biletix-blue);
+    background: rgba(0, 85, 254, 0.03);
+}
+
+.status-option.selected {
+    border-color: var(--biletix-blue);
+    background: rgba(0, 85, 254, 0.08);
+    font-weight: 600;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.dot-active {
+    background: var(--green);
+}
+
+.dot-refund {
+    background: var(--orange);
+}
+
+.dot-cancel {
+    background: var(--red);
+}
+
+/* ==========================================
+   Delete Modal
+   ========================================== */
+.delete-modal-content {
+    text-align: center;
+    padding: 28px 24px;
+}
+
+.delete-modal-icon {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.delete-modal-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.delete-modal-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.delete-modal-ref {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--red);
+    background: var(--red-light);
+    padding: 6px 12px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    display: inline-block;
+}
+
+.delete-modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.delete-modal-cancel {
+    flex: 1;
+    padding: 10px 16px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: var(--white);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.delete-modal-cancel:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+}
+
+.delete-modal-confirm {
+    flex: 1;
+    padding: 10px 16px;
+    border: 2px solid var(--red);
+    border-radius: 10px;
+    background: var(--red);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.delete-modal-confirm:hover {
+    background: #DC2626;
+    border-color: #DC2626;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* ==========================================
+   Empty State
+   ========================================== */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+}
+
+.empty-state-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+    opacity: 0.6;
+}
+
+.empty-state-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.empty-state-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 260px;
+}
+
+/* ==========================================
+   Toast Notification
+   ========================================== */
+.toast {
+    position: fixed;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text-primary);
+    color: var(--white);
+    padding: 8px 18px;
+    border-radius: 24px;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.toast.show {
+    bottom: 50px;
+}
+
+.toast-icon {
+    font-size: 14px;
+}
+
+/* ==========================================
+   Footer
+   ========================================== */
+.footer {
+    padding: 8px 16px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    background: var(--white);
+    flex-shrink: 0;
+}
+
+.footer-text {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+}
+
+/* ==========================================
+   Animations
+   ========================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sale-card {
+    animation: fadeInUp 0.3s ease forwards;
+}
+
+.sale-card:nth-child(1) {
+    animation-delay: 0.02s;
+}
+
+.sale-card:nth-child(2) {
+    animation-delay: 0.04s;
+}
+
+.sale-card:nth-child(3) {
+    animation-delay: 0.06s;
+}
+
+.sale-card:nth-child(4) {
+    animation-delay: 0.08s;
+}
+
+.sale-card:nth-child(5) {
+    animation-delay: 0.1s;
+}
