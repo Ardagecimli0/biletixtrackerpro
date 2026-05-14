@@ -1,106 +1,3 @@
-html_content = """
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <style>
-        @page {
-            size: A4;
-            margin: 20mm;
-            background-color: #ffffff;
-        }
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #24292e;
-            margin: 0;
-            padding: 0;
-            font-size: 11pt;
-        }
-        .header {
-            border-bottom: 2px solid #eaecef;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        h1 {
-            font-size: 24pt;
-            margin-bottom: 5px;
-            color: #0366d6;
-        }
-        .tagline {
-            font-size: 12pt;
-            color: #586069;
-            font-style: italic;
-        }
-        h2 {
-            font-size: 16pt;
-            border-bottom: 1px solid #eaecef;
-            padding-bottom: 8px;
-            margin-top: 25px;
-            color: #1b1f23;
-        }
-        h3 {
-            font-size: 13pt;
-            margin-top: 20px;
-            color: #24292e;
-        }
-        ul {
-            padding-left: 20px;
-        }
-        li {
-            margin-bottom: 5px;
-        }
-        code {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #f6f8fa;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-size: 10pt;
-        }
-        .code-block {
-            background-color: #f6f8fa;
-            padding: 15px;
-            border-radius: 6px;
-            font-family: 'Courier New', Courier, monospace;
-            white-space: pre;
-            display: block;
-            margin: 15px 0;
-            border: 1px solid #dfe1e4;
-            font-size: 9pt;
-        }
-        .badge {
-            display: inline-block;
-            padding: 4px 10px;
-            background-color: #0366d6;
-            color: white;
-            border-radius: 12px;
-            font-size: 9pt;
-            font-weight: bold;
-            margin-right: 5px;
-        }
-        .feature-grid {
-            margin-top: 20px;
-        }
-        .feature-item {
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-left: 4px solid #0366d6;
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>🚀 Biletix Tracker Pro</h1>
-        <div class="tagline">Akıllı Bilet İşlem Takip ve Arşivleme Çözümü</div>
-        <div style="margin-top: 15px;">
-            <span class="badge">Version 1.0.0</span>
-            <span class="badge">Manifest V3</span>
-            <span class="badge">Chrome Extension</span>
-        </div>
-    </div>
-
     <p><strong>Biletix Tracker Pro</strong>, bilet satış acenteleri, organizasyon ekipleri ve bireysel kullanıcılar için tasarlanmış profesyonel bir tarayıcı eklentisidir. Biletix onay sayfalarındaki kritik verileri manuel kopyalama zahmetinden kurtararak anında yakalar ve güvenli bir yerel arşiv oluşturur.</p>
 
     <h2>✨ Temel Özellikler</h2>
@@ -229,3 +126,7 @@ Bu proje, Google'ın en güncel tarayıcı standartları olan **Manifest V3** mi
 ├── popup.html         # Yönetim paneli arayüzü
 ├── style.css          # Modern görsel tasarım
 └── assets/            # İkonlar ve görsel varlıklar
+
+
+## 📄 Lisans
+Bu proje Apache License 2.0 altında lisanslanmıştır.
